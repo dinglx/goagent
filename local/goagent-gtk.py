@@ -119,9 +119,9 @@ Categories=Network;Proxy;
 Exec=/usr/bin/env python "%s"
 Icon=%s/goagent-logo.png
 Terminal=false
-StartupNotify=true
+StartupNotify=false
 ''' % (filename, dirname)
-    for dirname in map(os.path.expanduser, ['~/Desktop', u'~/桌面']):
+    for dirname in map(os.path.expanduser, ['~/.local/share/applications']):
         if os.path.isdir(dirname):
             filename = os.path.join(dirname, 'goagent-gtk.desktop')
             with open(filename, 'w') as fp:
@@ -203,6 +203,7 @@ class GoAgentGTK:
         return menu
 
     def show_notify(self, message=None, timeout=None):
+        return
         if pynotify and message:
             notification = pynotify.Notification('GoAgent Notify', message)
             notification.set_hint('x', 200)
